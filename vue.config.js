@@ -20,6 +20,19 @@ pagesObj["main"] = {
     filename: `popup.html`
 };
 
+pagesObj["devcreate"] = {
+    entry: `src/devtool/devcreate.js`,
+    // template: "public/index.html",
+    filename: `devcreate.html`
+};
+
+pagesObj["devcontent"] = {
+    entry: `src/devtool/devcontent.js`,
+    // template: "public/index.html",
+    filename: `devcontent.html`
+};
+
+
 const plugins = [
             {
                 from: path.resolve("src/manifest.json"),
@@ -39,6 +52,13 @@ const plugins = [
 module.exports = {
     pages: pagesObj,
     configureWebpack: {
+        entry:{
+            "background":"./src/background/background.js",
+            "content":"./src/content/content.js"
+        },
+        output:{
+            filename: 'js/[name].js' 
+        },
         plugins: [new CopyWebpackPlugin(plugins)]
     },
     filenameHashing: false,
